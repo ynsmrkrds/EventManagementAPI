@@ -1,3 +1,5 @@
+using EventManagement.API.Extensions.Handlers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +19,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Dictate to use custom exception handler
+app.UseCustomException();
 
 app.UseAuthorization();
 

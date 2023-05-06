@@ -30,7 +30,7 @@ namespace EventManagement.API.Extensions.Handlers
 
                     string errorMessage = statusCode switch
                     {
-                        HttpStatusCode.InternalServerError => ExceptionMessages.ServerSideExceptionMessage,
+                        HttpStatusCode.InternalServerError => ExceptionConstants.ServerSideException,
                         _ => exceptionFeature.Error.Message
                     };
 

@@ -6,13 +6,13 @@ namespace EventManagement.Application.DTOs.ResponseDTOs
     public class APIResponseDTO
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public object? Data { get; private set; }
+        public object? Data { get; set; }
 
         [JsonIgnore]
-        public HttpStatusCode StatusCode { get; private set; }
+        public HttpStatusCode StatusCode { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public List<string>? Messages { get; private set; }
+        public List<string>? Messages { get; set; }
 
         public APIResponseDTO(HttpStatusCode statusCode, object data)
         {

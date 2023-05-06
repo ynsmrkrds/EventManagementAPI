@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using EventManagement.Application.CQRSs.CategoryContextCQRSs.CommandCreateCategory;
 using EventManagement.Application.CQRSs.CategoryContextCQRSs.CommandUpdateCategory;
+using EventManagement.Application.CQRSs.LocationContextCQRSs.CommandCreateLocation;
+using EventManagement.Application.CQRSs.LocationContextCQRSs.CommandUpdateLocation;
 using EventManagement.Application.CQRSs.UserContextCQRSs.CommandCreateUser;
 using EventManagement.Application.CQRSs.UserContextCQRSs.CommandUpdateUser;
 using EventManagement.Domain.Entities.CategoryContextEntities;
+using EventManagement.Domain.Entities.LocationContextEntities;
 using EventManagement.Domain.Entities.UserContextEntities;
 
 namespace EventManagement.Application.Mappings
@@ -23,7 +26,13 @@ namespace EventManagement.Application.Mappings
             #region Category Bounded Context Mappings
             CreateMap<CreateCategoryCommandRequest, CategoryEntity>();
 
-            CreateMap<UpdateCategoryCommandRequest, CategoryEntity>();            
+            CreateMap<UpdateCategoryCommandRequest, CategoryEntity>();
+            #endregion
+
+            #region Location Bounded Context Mappings
+            CreateMap<CreateLocationCommandRequest, LocationEntity>();
+
+            CreateMap<UpdateLocationCommandRequest, LocationEntity>();
             #endregion
         }
     }

@@ -25,5 +25,7 @@ namespace EventManagement.Domain.Constants
         public static readonly ResponseConstant ExistsUserWithSameEmail = new(false, "A user with the same email address already exists!");
 
         public static readonly ResponseConstant ExistsCategoryWithSameName = new(false, "A category with the same name already exists!");
+
+        public static readonly ResponseConstant ExistsLocationWithSameName = new(false, "A location with the same name already exists!");
     }
 }

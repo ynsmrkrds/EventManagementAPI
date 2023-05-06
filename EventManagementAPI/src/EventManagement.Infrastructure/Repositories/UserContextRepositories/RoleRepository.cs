@@ -9,5 +9,12 @@ namespace EventManagement.Infrastructure.Repositories.UserContextRepositories
         public RoleRepository(EventManagementDBContext context) : base(context)
         {
         }
+
+        public RoleEntity? GetByName(string name)
+        {
+            return _context.Roles
+                .Where(x => x.Name == name)
+                .FirstOrDefault();
+        }
     }
 }

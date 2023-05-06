@@ -1,4 +1,5 @@
-﻿using EventManagement.Domain.Entities.UserContextEntities;
+﻿using EventManagement.Domain.Entities.CategoryContextEntities;
+using EventManagement.Domain.Entities.UserContextEntities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -12,6 +13,10 @@ namespace EventManagement.Infrastructure.Context
         public DbSet<RoleEntity> Roles { get; set; }
 
         public DbSet<UserRoleEntity> UserRoles { get; set; }
+        #endregion
+
+        #region Category Bounded Context DbSets 
+        public DbSet<CategoryEntity> Categories { get; set; }
         #endregion
 
         public EventManagementDBContext(DbContextOptions<EventManagementDBContext> options) : base(options)

@@ -1,4 +1,5 @@
-﻿using EventManagement.Application.CQRSs.UserContextCQRSs.CommandCreateUser;
+﻿using EventManagement.API.Extensions.Attributes;
+using EventManagement.Application.CQRSs.UserContextCQRSs.CommandCreateUser;
 using EventManagement.Application.CQRSs.UserContextCQRSs.CommandUpdatePassword;
 using EventManagement.Application.CQRSs.UserContextCQRSs.CommandUpdateUser;
 using EventManagement.Application.CQRSs.UserContextCQRSs.QueryGetProfile;
@@ -24,6 +25,7 @@ namespace EventManagement.API.Controllers
 
         [HttpGet]
         [Route("getProfile")]
+        [Authority("Standard", "Admin")]
         public async Task<IActionResult> GetProfile()
         {
             GetProfileQueryResponse queryResponse = await _mediator.Send(new GetProfileQueryRequest());
@@ -54,6 +56,7 @@ namespace EventManagement.API.Controllers
 
         [HttpPut]
         [Route("updateProfile")]
+        [Authority("Standard", "Admin")]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateUserCommandRequest request)
         {
             UpdateUserCommandResponse commandResponse = await _mediator.Send(request);
@@ -64,6 +67,7 @@ namespace EventManagement.API.Controllers
 
         [HttpPut]
         [Route("updatePassword")]
+        [Authority("Standard", "Admin")]
         public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordCommandRequest request)
         {
             UpdatePasswordCommandResponse commandResponse = await _mediator.Send(request);

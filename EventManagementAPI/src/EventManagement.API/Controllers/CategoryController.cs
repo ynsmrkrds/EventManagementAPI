@@ -52,7 +52,7 @@ namespace EventManagement.API.Controllers
         [HttpDelete]
         [Route("{id}")]
         [Authority("Admin")]
-        public async Task<IActionResult> Update(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             DeleteCategoryCommandResponse commandResponse = await _mediator.Send(new DeleteCategoryCommandRequest(id));
             if (commandResponse.IsSuccessful == false) return CreateActionResult(new APIResponseDTO(HttpStatusCode.BadRequest, commandResponse.Message));

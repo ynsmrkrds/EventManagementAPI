@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using EventManagement.Application.ViewModels.CategoryContextViewModels;
+using EventManagement.Application.ViewModels.EventContextViewModels;
 using EventManagement.Application.ViewModels.LocationContextViewModels;
 using EventManagement.Application.ViewModels.UserContextViewModels;
 using EventManagement.Domain.Entities.CategoryContextEntities;
+using EventManagement.Domain.Entities.EventContextEntities;
 using EventManagement.Domain.Entities.LocationContextEntities;
 using EventManagement.Domain.Entities.UserContextEntities;
 
@@ -22,6 +24,10 @@ namespace EventManagement.Application.Mappings
 
             #region Location Bounded Context Mappings
             CreateMap<LocationEntity, LocationViewModel>();
+            #endregion
+
+            #region Event Bounded Context Mappings
+            CreateMap<EventEntity, EventViewModel>();
             #endregion
         }
     }

@@ -1,4 +1,5 @@
 ﻿using EventManagement.Domain.Entities.CategoryContextEntities;
+using EventManagement.Domain.Entities.EventContextEntities;
 using EventManagement.Domain.Entities.LocationContextEntities;
 using EventManagement.Domain.Entities.UserContextEntities;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,10 @@ namespace EventManagement.Infrastructure.Context
 
         #region Location Bounded Context DbSets 
         public DbSet<LocationEntity> Locations { get; set; }
+        #endregion
+
+        #region Event Bounded Context DbSets 
+        public DbSet<EventEntity> Events { get; set; }
         #endregion
 
         public EventManagementDBContext(DbContextOptions<EventManagementDBContext> options) : base(options)

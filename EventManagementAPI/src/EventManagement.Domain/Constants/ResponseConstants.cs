@@ -27,5 +27,15 @@ namespace EventManagement.Domain.Constants
         public static readonly ResponseConstant ExistsCategoryWithSameName = new(false, "A category with the same name already exists!");
 
         public static readonly ResponseConstant ExistsLocationWithSameName = new(false, "A location with the same name already exists!");
+
+        public static readonly ResponseConstant ReachedEventQuota = new(false, "The quota for the event has been reached!");
+
+        public static readonly ResponseConstant SuccessfullyPurchased = new(true, "Successfully purchased!");
+        
+        public static readonly ResponseConstant PurchaseFailed = new(false, "Purchase failed! Please try again.");
+
+        public static readonly ResponseConstant TicketValid = new(true, "The ticket number entered is valid!");
+
+        public static readonly ResponseConstant TicketNotValid = new(false, "The ticket number entered is not valid!");
     }
 }

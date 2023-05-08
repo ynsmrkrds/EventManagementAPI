@@ -8,6 +8,8 @@ namespace EventManagement.Domain.Entities.UserContextEntities
 
         public string Description { get; set; }
 
+        public ICollection<UserRoleEntity> UserRoles { get; set; } = new List<UserRoleEntity>();
+
         public RoleEntity(string name, string description)
         {
             Name = name;

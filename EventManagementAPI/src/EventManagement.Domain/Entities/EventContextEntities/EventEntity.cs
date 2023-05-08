@@ -1,5 +1,6 @@
 ﻿using EventManagement.Domain.Entities.CategoryContextEntities;
 using EventManagement.Domain.Entities.LocationContextEntities;
+using EventManagement.Domain.Entities.TicketContextEntities;
 using EventManagement.Domain.Entities.UserContextEntities;
 using EventManagement.Domain.Enums.CategoryContextEnums;
 using EventManagement.Domain.SeedWorks;
@@ -8,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventManagement.Domain.Entities.EventContextEntities
 {
-    public class EventEntity : BaseEntity, IAggregateRoot
+    public class EventEntity : BaseEntity
     {
         public string Title { get; set; }
 
@@ -36,6 +37,8 @@ namespace EventManagement.Domain.Entities.EventContextEntities
         public UserEntity? CreatedBy { get; set; }
 
         public EventStatus Status { get; set; }
+
+        public ICollection<TicketEntity> Tickets { get; set; } = new List<TicketEntity>();
 
         public EventEntity(string title, DateTime date, string description, int locationID, string address, int quota, int categoryID, int createdByID, EventStatus status)
         {

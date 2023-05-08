@@ -23,9 +23,7 @@ namespace EventManagement.Application.CQRSs.EventContextCQRSs.QueryGetAllEvents
 
         public Task<GetAllEventsQueryResponse> Handle(GetAllEventsQueryRequest request, CancellationToken cancellationToken)
         {
-            TokenModel tokenModel = TokenHelper.Instance().DecodeTokenInRequest() ?? throw new ClientSideException(ExceptionConstants.TokenError);
-
-            List<EventEntity> events = _eventRepository.GetAll(tokenModel.UserID).ToList();
+            List<EventEntity> events = _eventRepository.GetAll().ToList();
 
             List<EventViewModel> viewModels = _mapper.Map<List<EventEntity>, List<EventViewModel>>(events);
 

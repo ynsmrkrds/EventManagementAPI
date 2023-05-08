@@ -5,6 +5,8 @@ using EventManagement.Application.CQRSs.EventContextCQRSs.CommandReviewEvent;
 using EventManagement.Application.CQRSs.EventContextCQRSs.CommandUpdateEvent;
 using EventManagement.Application.CQRSs.EventContextCQRSs.QueryGetAllEvents;
 using EventManagement.Application.CQRSs.EventContextCQRSs.QueryGetEventByID;
+using EventManagement.Application.CQRSs.EventContextCQRSs.QueryGetOrganizedEvents;
+using EventManagement.Application.CQRSs.EventContextCQRSs.QueryGetParticipatedEvents;
 using EventManagement.Application.DTOs.ResponseDTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +39,24 @@ namespace EventManagement.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             GetAllEventsQueryResponse queryResponse = await _mediator.Send(new GetAllEventsQueryRequest());
+            return CreateActionResult(new APIResponseDTO(HttpStatusCode.OK, queryResponse.Events));
+        }
+
+        [HttpGet]
+        [Route("organized")]
+        [Authority("Standard", "Admin")]
+        public async Task<IActionResult> GetOrganizedEvents()
+        {
+            GetOrganizedEventsQueryResponse queryResponse = await _mediator.Send(new GetOrganizedEventsQueryRequest());
+            return CreateActionResult(new APIResponseDTO(HttpStatusCode.OK, queryResponse.Events));
+        }
+
+        [HttpGet]
+        [Route("participated")]
+        [Authority("Standard", "Admin")]
+        public async Task<IActionResult> GetParticipatedEvents()
+        {
+            GetParticipatedEventsQueryResponse queryResponse = await _mediator.Send(new GetParticipatedEventsQueryRequest());
             return CreateActionResult(new APIResponseDTO(HttpStatusCode.OK, queryResponse.Events));
         }
 

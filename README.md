@@ -17,6 +17,7 @@ The aim of the project is to create an online event management system where user
     
 ## Used Technologies
   
+    - ASP.NET Core Web API
     - Domain Driven Design as architectural design
     - MSSQL as database
     - Entity Framework as ORM framework

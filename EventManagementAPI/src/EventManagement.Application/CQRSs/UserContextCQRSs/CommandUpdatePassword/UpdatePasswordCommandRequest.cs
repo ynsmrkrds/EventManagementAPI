@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using System.ComponentModel.DataAnnotations;
 
 namespace EventManagement.Application.CQRSs.UserContextCQRSs.CommandUpdatePassword
 {
@@ -6,6 +7,7 @@ namespace EventManagement.Application.CQRSs.UserContextCQRSs.CommandUpdatePasswo
     {
         public string CurrentPassword { get; set; }
 
+        [StringLength(50, MinimumLength = 6)]
         public string NewPassword { get; set; }
 
         public UpdatePasswordCommandRequest(string currentPassword, string newPassword)

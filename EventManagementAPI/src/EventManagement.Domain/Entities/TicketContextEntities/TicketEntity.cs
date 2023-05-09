@@ -1,6 +1,7 @@
 ﻿using EventManagement.Domain.Entities.EventContextEntities;
 using EventManagement.Domain.Entities.UserContextEntities;
 using EventManagement.Domain.SeedWorks.BillingService.Domain.SeedWorks;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventManagement.Domain.Entities.TicketContextEntities

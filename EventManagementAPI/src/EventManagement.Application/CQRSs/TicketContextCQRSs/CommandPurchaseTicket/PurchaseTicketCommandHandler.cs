@@ -2,6 +2,7 @@
 using EventManagement.Domain.Constants;
 using EventManagement.Domain.Entities.EventContextEntities;
 using EventManagement.Domain.Entities.TicketContextEntities;
+using EventManagement.Domain.Enums.CategoryContextEnums;
 using EventManagement.Domain.Exceptions;
 using EventManagement.Domain.Models;
 using EventManagement.Domain.Repositories.EventContextRepositories;
@@ -27,6 +28,21 @@ namespace EventManagement.Application.CQRSs.TicketContextCQRSs.CommandPurchaseTi
 
             EventEntity eventEntity = _eventRepository.GetByID(request.EventID) ?? throw new ClientSideException(ExceptionConstants.NotFoundEvent);
 
+            if (eventEntity.Status != EventStatus.Approved)
+            {
+                return Task.FromResult(new PurchaseTicketCommandResponse(ResponseConstants.EventNotActive));
+            }
+
+            if (eventEntity.CreatedByID == tokenModel.UserID)
+            {
+                return Task.FromResult(new PurchaseTicketCommandResponse(ResponseConstants.CannotBePurchasedOwnEventTicket));
+            }
+
+            if (_ticketRepository.HasTicket(eventEntity.ID, tokenModel.UserID))
+            {
+                return Task.FromResult(new PurchaseTicketCommandResponse(ResponseConstants.AlreadyHasTicket));
+            }
+
             if (_ticketRepository.GetTicketCountOfEvent(request.EventID) >= eventEntity.Quota)
             {
                 return Task.FromResult(new PurchaseTicketCommandResponse(ResponseConstants.ReachedEventQuota));
@@ -48,10 +64,10 @@ namespace EventManagement.Application.CQRSs.TicketContextCQRSs.CommandPurchaseTi
         {
             string dateInfo = purchaseDate.ToString("MMddyy");
 
-            string userInfo = (userID + 33).ToString();
-            string eventInfo = (eventID + 33).ToString();
+            string userInfo = userID.ToString();
+            string eventInfo = eventID.ToString();
 
-            string ticketNumber = userInfo + dateInfo + eventInfo;
+            string ticketNumber = dateInfo + userInfo + eventInfo;
 
             return ticketNumber[^10..];
         }

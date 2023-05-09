@@ -5,16 +5,19 @@ using EventManagement.Domain.Entities.UserContextEntities;
 using EventManagement.Domain.Enums.CategoryContextEnums;
 using EventManagement.Domain.SeedWorks;
 using EventManagement.Domain.SeedWorks.BillingService.Domain.SeedWorks;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventManagement.Domain.Entities.EventContextEntities
 {
     public class EventEntity : BaseEntity
     {
+        [StringLength(50, MinimumLength = 3)]
         public string Title { get; set; }
 
         public DateTime Date { get; set; }
 
+        [StringLength(255, MinimumLength = 10)]
         public string Description { get; set; }
 
         [ForeignKey(nameof(Location))]
@@ -22,6 +25,7 @@ namespace EventManagement.Domain.Entities.EventContextEntities
 
         public LocationEntity? Location { get; set; }
 
+        [StringLength(255, MinimumLength = 3)]
         public string Address { get; set; }
 
         public int Quota { get; set; }

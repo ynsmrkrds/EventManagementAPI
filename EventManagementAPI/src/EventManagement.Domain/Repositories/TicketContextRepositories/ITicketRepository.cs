@@ -9,5 +9,7 @@ namespace EventManagement.Domain.Repositories.TicketContextRepositories
         bool IsValid(string ticketNo);
 
         IQueryable<TicketEntity> GetAll(int userID);
+
+        bool HasTicket(int eventID, int userID);
     }
 }

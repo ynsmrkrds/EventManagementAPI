@@ -1,5 +1,7 @@
-﻿using EventManagement.Domain.Configurations;
+﻿using EventManagement.API.Extensions.Attributes;
+using EventManagement.Domain.Configurations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -10,6 +12,18 @@ namespace EventManagement.API.Extensions.Registrations
     {
         public static IServiceCollection AddAPIServices(this IServiceCollection services, IConfiguration configuration)
         {
+            #region Register fluent validation
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(new ValidatationFilterAttribute());
+            });
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+            #endregion
+
             // Sets up the authentication token configurations
             TokenConfiguration? tokenConfiguration = configuration.GetSection("JwtSettings").Get<TokenConfiguration>();
             if (tokenConfiguration != null)

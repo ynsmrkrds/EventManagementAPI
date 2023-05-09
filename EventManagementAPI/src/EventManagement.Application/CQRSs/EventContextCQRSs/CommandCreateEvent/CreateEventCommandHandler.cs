@@ -24,6 +24,8 @@ namespace EventManagement.Application.CQRSs.EventContextCQRSs.CommandCreateEvent
         {
             TokenModel tokenModel = TokenHelper.Instance().DecodeTokenInRequest() ?? throw new ClientSideException(ExceptionConstants.TokenError);
 
+            if (request.Date <= DateTime.Now) return Task.FromResult(new CreateEventCommandResponse(ResponseConstants.CreateFailed));
+
             EventEntity eventEntity = _mapper.Map<EventEntity>(request);
             eventEntity.CreatedByID = tokenModel.UserID;
             _eventRepository.Add(eventEntity);

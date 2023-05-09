@@ -37,5 +37,11 @@ namespace EventManagement.Domain.Constants
         public static readonly ResponseConstant TicketValid = new(true, "The ticket number entered is valid!");
 
         public static readonly ResponseConstant TicketNotValid = new(false, "The ticket number entered is not valid!");
+
+        public static readonly ResponseConstant AlreadyHasTicket = new(false, "You have already purchased the ticket you are trying to buy. You cannot buy again!");
+
+        public static readonly ResponseConstant EventNotActive = new(false, "You cannot buy tickets as the event is not active!");
+
+        public static readonly ResponseConstant CannotBePurchasedOwnEventTicket = new(false, "Own event tickets cannot be purchased!");
     }
 }

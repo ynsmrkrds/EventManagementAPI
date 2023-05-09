@@ -86,7 +86,7 @@ namespace EventManagement.Infrastructure.Context
             modelBuilder.Entity<UserRoleEntity>()
                 .HasOne(x => x.Role)
                 .WithMany(x => x.UserRoles)
-                .HasForeignKey(x => x.UserID)
+                .HasForeignKey(x => x.RoleID)
                 .OnDelete(DeleteBehavior.Restrict);
             #endregion
 

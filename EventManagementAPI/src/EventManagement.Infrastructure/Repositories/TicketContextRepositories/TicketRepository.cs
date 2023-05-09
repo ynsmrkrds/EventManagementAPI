@@ -31,5 +31,12 @@ namespace EventManagement.Infrastructure.Repositories.TicketContextRepositories
                 .Where(x => x.PurchasedByID == userID)
                 .AsNoTracking();
         }
+
+        public bool HasTicket(int eventID, int userID)
+        {
+            return _context.Tickets
+                .Where(x => x.EventID == eventID && x.PurchasedByID == userID)
+                .Any();
+        }
     }
 }

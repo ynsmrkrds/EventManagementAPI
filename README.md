@@ -1,4 +1,4 @@
-# Readmate Application
+# Event Management API
 
 The aim of the project is to create an online event management system where users can create, view and apply for events. 
 
